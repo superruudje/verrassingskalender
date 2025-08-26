@@ -16,13 +16,19 @@
         </p>
         <p><em>Veel succes!</em> 🎉</p>
       </section>
-      <div class="d-flex align-items-center gap-1 mb-3">
-        <div class="prize-0" style="height: 12px; width: 12px"></div>
-        <span>= €0,00</span>
-        <div class="prize-100" style="height: 12px; width: 12px"></div>
-        <span>= €100,00</span>
-        <div class="prize-25000" style="height: 12px; width: 12px"></div>
-        <span>= €25.000,00</span>
+      <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+        <div class="d-flex align-items-center gap-1">
+          <span class="prize-0" style="height: 12px; width: 12px"></span>
+          <span>= €0,00</span>
+        </div>
+        <div class="d-flex align-items-center gap-1">
+          <span class="prize-100" style="height: 12px; width: 12px"></span>
+          <span>= €100,00</span>
+        </div>
+        <div class="d-flex align-items-center gap-1">
+          <span class="prize-25000" style="height: 12px; width: 12px"></span>
+          <span>= €25000,00</span>
+        </div>
 
         <div class="ms-auto zoom-controls">
           <button class="btn btn-sm btn-secondary" type="button" @click="zoomOut">-</button>
@@ -177,7 +183,6 @@ onMounted(() => {
 .zoom-controls {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   column-gap: 8px;
 
   background-color: #5442001a;

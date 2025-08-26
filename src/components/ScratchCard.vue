@@ -109,7 +109,7 @@ watch(scratchedPercentage, (value) => {
 
 onMounted(() => {
   if (canvas.value) {
-    ctx.value = canvas.value.getContext('2d')
+    ctx.value = canvas.value.getContext('2d', { willReadFrequently: true })
     initCover()
   }
 })
