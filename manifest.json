@@ -1,0 +1,46 @@
+{
+  "id": "/",
+  "start_url": "/",
+  "author": "Rudi Haamke (superruudje)",
+  "version": "1.0.0",
+  "name": "NLO Verrassingskalender",
+  "description": "Kras en win!",
+  "short_name": "NLO Verrassingskalender",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ff6600",
+  "theme_color": "#000",
+  "icons": [
+    {
+      "src": "appicons/appicon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "appicons/appicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/desktop-720.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshots/mobile-844.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ]
+}
+
