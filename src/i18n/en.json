@@ -1,0 +1,85 @@
+{
+  "menu": {
+    "home": "Home",
+    "about": "About"
+  },
+  "gameSettings": {
+    "title": "Game settings",
+    "width": "Width",
+    "height": "Height",
+    "100prizes": "Amount of {amount} prizes",
+    "25000prizes": "Amount of {amount} prizes",
+    "minigame": "Scratch minigame",
+    "errors": {
+      "maxPrizes": "Total amount of prizes ({totalPrizes}) cannot be greater than total amount of boxes ({totalBoxes}).",
+      "minPrizes": "Amount of prizes cannot be negative.",
+      "gridSize": "Width and height must be greater than 0."
+    }
+  },
+  "game": {
+    "title": "Welcome to the surprise calendar!",
+    "intro": "In front of you is a calendar with {total} ({width} × {height}). Hidden inside this calendar you will find the following prizes: {prize25000Count} × {amount25000} and {prize100Count} × {amount100}. You may scratch open one box to see if there is a prize inside. You can also see which boxes have already been opened by other players.",
+    "totalBoxes": "no boxes | {n} box | {n} boxes",
+    "encouragement": "Good luck!",
+    "endGame": {
+      "title": "End game",
+      "text": "All boxes have been opened."
+    }
+  },
+  "scratch": {
+    "title": "Scratch the box open",
+    "text": "Scratch the box to see if there's a prize hidden behind it. Once you start scratching, you can't cancel.",
+    "minimal": "Scratch at least 75% of the scratch card.",
+    "prize": "{p} You win {prize}.",
+    "noPrize": "{0} Better luck next time.",
+    "no": "Unfortunately!",
+    "congrats": "Congratulations!"
+  },
+  "cta": {
+    "startNew": "Start a new game",
+    "changeSettings": "Change settings",
+    "cancel": "Cancel",
+    "close": "Close"
+  },
+  "about": {
+    "case": {
+      "title": "Case description",
+      "p1": "NLO is organizing a new game of chance. On a website, users see a large surprise calendar with 10,000 boxes (100 × 100 grid). One box contains the grand prize of €25,000, and 100 boxes contain consolation prizes of €100. A visitor to the website may scratch off one box for a chance to win a prize. They can see which boxes have already been opened by other users and which have not.",
+      "p2": "Use the programming language and framework of your choice:",
+      "li1": "Create a webpage that displays the surprise calendar. This can be a simple unstyled 100 × 100 grid.",
+      "li2": "A user can scratch off a box, revealing the prize underneath gradually.",
+      "li3": "Upon reloading the page, it must remain visible which boxes have already been scratched and which prize was under each.",
+      "li4": "You don’t need to implement authentication; you can simulate multiple users scratching boxes in the calendar.",
+      "p3": "The goal of this assignment is for you to showcase what excites you technically. Focus on what you find important in front-end work: performance, UX, code quality, testability, design systems, tooling — everything is fine, as long as it demonstrates your skills."
+    },
+    "stack": {
+      "title": "Tech stack",
+      "p1": "This project is built with a modern {stack} focused on performance, maintainability, and a pleasant development experience.",
+      "tech": {
+        "title": "Core technologies",
+        "vue": "{vue} is the core of the application, providing a modular and scalable structure.",
+        "pinia": "{pinia} is used for centralized and predictable state management.",
+        "router": "{router} handles navigation within the application.",
+        "bootstrap": "{bootstrap} and {icons} provide a consistent and responsive UI.",
+        "sass": "{sass} enables flexible and maintainable stylesheets.",
+        "i18n": "{i18n} enables multilingual support and easy localization."
+      },
+      "env": {
+        "title": "Development environment",
+        "vite": "{vite} for fast builds and hot module reloading during development.",
+        "typescript": "{ts} provides type safety and reliability in the codebase.",
+        "eslint": "{eslint} and {prettier} ensure code quality and consistent formatting.",
+        "vueTsc": "{vueTsc} for type checking in Vue components.",
+        "viteDevtools": "{viteDevtools} supports debugging and inspection."
+      }
+    },
+    "cta": {
+      "title": "Want to know more?",
+      "github": "View the code on Github"
+    }
+  },
+  "footer": {
+    "warning": "What is gambling really costing you? Be aware, {0}",
+    "age": "18+"
+  }
+}

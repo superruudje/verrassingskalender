@@ -1,14 +1,19 @@
 <template>
-  <Navbar/>
-  <div style="background-color: #f8f7f0">
-    <router-view/>
+  <NavbarComponent />
+  <div class="content">
+    <router-view />
   </div>
-  <Footer/>
+  <FooterComponent />
 </template>
 
 <script setup lang="ts">
-import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
+import NavbarComponent from '@/components/NavbarComponent.vue'
+import FooterComponent from '@/components/FooterComponent.vue'
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.content {
+  background-color: #f8f7f0;
+  min-height: 80vh;
+}
+</style>

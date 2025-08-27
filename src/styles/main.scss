@@ -1,9 +1,9 @@
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
-@import "bootstrap-icons/font/bootstrap-icons.css";
-@import "bootstrap/scss/bootstrap";
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'bootstrap/scss/bootstrap';
 
-@import "./buttons";
+@import './buttons';
 
 @font-face {
   font-family: 'Museo';
@@ -36,5 +36,3 @@ body {
 .nl-primary {
   color: #002d6e;
 }
-
-

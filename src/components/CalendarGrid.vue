@@ -1,20 +1,46 @@
 <template>
   <div class="card rounded-0 border-0 shadow mb-4">
     <div class="card-body p-4">
-      <section class="nl-primary">
-        <h3 class="fw-bold">Welkom bij de verrassingskalender!</h3>
+      <section class="nl-primary mb-4">
+        <h3 class="fw-bold">{{ $t('game.title') }}</h3>
+        <i18n-t keypath="game.intro" tag="p">
+          <template #total>
+            <b>{{ $t('game.totalBoxes', totalBoxes) }}</b>
+          </template>
+          <template #width>{{ width }}</template>
+          <template #height>{{ height }}</template>
+          <template #prize25000Count>{{ prize25000Count }}</template>
+          <template #amount25000
+            ><b>{{ $n(25000, 'currency') }}</b></template
+          >
+          <template #prize100Count>{{ prize100Count }}</template>
+          <template #amount100
+            ><b>{{ $n(100, 'currency') }}</b></template
+          >
+        </i18n-t>
+
         <p>
-          Voor je zie je een kalender met
-          <strong>{{ totalCells.toLocaleString() }} vakjes</strong>
-          ({{ width }} × {{ height }}). In deze kalender
-          {{ prize25000Count > 1 ? 'zijn' : 'is' }}
-          <strong>{{ prize25000Count }}</strong>
-          {{ prize25000Count > 1 ? 'hoofdprijzen' : 'hoofdprijs' }} van
-          <strong>€25.000</strong> verstopt en <strong>{{ prize100Count }}</strong> troostprijzen
-          van <strong>€100</strong>. Je mag <strong>één vakje</strong> openkrassen om te zien of er
-          een prijs achter zit. Ook zie je welke vakjes al door andere spelers geopend zijn.
+          <em>{{ $t('game.encouragement') }}</em> 🎉
         </p>
-        <p><em>Veel succes!</em> 🎉</p>
+
+        <div class="d-flex flex-wrap gap-2">
+          <button
+            :title="$t('cta.changeSettings')"
+            class="btn-primary"
+            type="button"
+            @click="calendarStore.resetGame()"
+          >
+            <span class="btn-text">{{ $t('cta.changeSettings') }}</span>
+          </button>
+          <button
+            :title="$t('cta.startNew')"
+            class="btn-cta"
+            type="button"
+            @click="calendarStore.initializeGrid"
+          >
+            <span class="btn-text">{{ $t('cta.startNew') }}</span>
+          </button>
+        </div>
       </section>
       <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
         <div class="d-flex align-items-center gap-1">
@@ -81,36 +107,52 @@
 
 <script lang="ts" setup>
 import { useCalendarStore } from '@/stores/calendar.ts'
-import { computed, type ComputedRef, onMounted, ref, watch } from 'vue'
+import { computed, type ComputedRef, ref, watch } from 'vue'
 import type { Box } from '@/types/Calendar.ts'
 import { storeToRefs } from 'pinia'
 import EndGameModal from '@/components/EndGameModal.vue'
 import ScratchModal from '@/components/ScratchModal.vue'
 
 const calendarStore = useCalendarStore()
-const { width, height, prize100Count, prize25000Count } = storeToRefs(calendarStore)
+const { width, height, prize100Count, prize25000Count, minigame } = storeToRefs(calendarStore)
 
 const zoom = ref<number>(1)
 const selectedBox = ref<Box | null>(null)
 const scratchModalButton = ref<HTMLButtonElement | null>(null)
 const modalButton = ref<HTMLButtonElement | null>(null)
 
-const totalCells = computed(() => calendarStore.width * calendarStore.height)
+const totalBoxes = computed(() => calendarStore.width * calendarStore.height)
 
 const allOpened: ComputedRef<boolean> = computed(() =>
   calendarStore.boxes.every((box) => box.opened),
 )
 
+/**
+ * Reveals the contents of the given box. If the box is already opened, no further action is taken.
+ * If a minigame is active, it selects the box and triggers the scratch modal.
+ * Otherwise, it opens the box using the calendar store.
+ *
+ * @param {Box} box - The box object to be revealed.
+ * @return {void} This method does not return a value.
+ */
 function reveal(box: Box) {
   if (box.opened) return
-  selectedBox.value = box
-  scratchModalButton.value?.click()
 
-  // calendarStore.openBox(box.id)
-  // if (box.prize) popConfetti()
+  if (minigame.value) {
+    selectedBox.value = box
+    scratchModalButton.value?.click()
+  } else {
+    calendarStore.openBox(box.id)
+  }
 }
 
-function boxClass(box: { prize: number; opened: boolean }): string {
+/**
+ * Determines the CSS class for a box based on its state and prize amount.
+ *
+ * @param {Box} box - The box object, containing its state and prize information.
+ * @return {string} The CSS class representing the state or prize value of the box.
+ */
+function boxClass(box: Box): string {
   if (!box.opened) return 'hidden'
   if (box.prize === 25000) return 'prize-25000'
   if (box.prize === 100) return 'prize-100'
@@ -128,16 +170,13 @@ function zoomOut() {
 watch(allOpened, (val) => {
   if (val) modalButton.value?.click()
 })
-
-onMounted(() => {
-  calendarStore.loadFromLocalStorage()
-})
 </script>
 
 <style lang="scss" scoped>
 .grid-container {
   width: 100%;
-  height: 80vh;
+  height: max-content;
+  max-height: 80vh;
   overflow: auto;
   border: 1px solid #ccc;
 

@@ -7,11 +7,14 @@
             <img
               src="@/assets/logo-spel-van-nederlandse-loterij.svg"
               alt="Een spel van Nederlandse loterij logo"
-              loading="lazy"/>
+              loading="lazy"
+            />
           </a>
         </div>
-        <div class="col-12 col-md-4 text-center text-md-end">
-          <span>Wat kost gokken jou? Stop op tijd, <b>18+</b></span>
+        <div class="col-12 col-md-6 text-center text-md-end">
+          <i18n-t tag="span" keypath="footer.warning" for="footer.age">
+            <strong>{{ $t('footer.age') }}</strong>
+          </i18n-t>
         </div>
       </div>
     </div>
@@ -22,6 +25,6 @@
 
 <style lang="scss" scoped>
 footer {
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, .1) !important;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1) !important;
 }
 </style>

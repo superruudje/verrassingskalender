@@ -11,13 +11,12 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content nl-primary">
         <div class="modal-header">
-          <h3 id="staticBackdropLabel" class="modal-title fs-5 fw-bold">Kras het vakje open</h3>
+          <h3 id="staticBackdropLabel" class="modal-title fs-5 fw-bold">
+            {{ $t('scratch.title') }}
+          </h3>
         </div>
         <div class="modal-body text-center nl-primary">
-          <p>
-            Kras het vakje open om te zien of er een prijs achter zit. Wanneer je start met krassen
-            kun je niet meer annuleren.
-          </p>
+          <p>{{ $t('scratch.text') }}</p>
           <div class="d-flex justify-content-center">
             <ScratchCard
               :key="box?.id"
@@ -26,11 +25,20 @@
               @started="started = true"
             />
           </div>
-          <span v-if="box?.opened && !box.prize"><b>Helaas!</b> Volgende keer beter.</span>
-          <span v-else-if="box?.opened && box.prize"
-            ><b>Gefeliciteerd!</b> Je wint €{{ box.prize.toLocaleString() }}.</span
-          >
-          <span v-else>Kras minimaal 75% van de kraskaart.</span>
+          <template v-if="box?.opened && !box.prize">
+            <i18n-t keypath="scratch.noPrize" tag="span">
+              <b>{{ $t('scratch.no') }}</b>
+            </i18n-t>
+          </template>
+          <template v-else-if="box?.opened && box.prize">
+            <i18n-t keypath="scratch.prize" tag="span">
+              <template #p>
+                <b>{{ $t('scratch.congrats') }}</b>
+              </template>
+              <template #prize>{{ $n(box.prize, 'currency') }}</template>
+            </i18n-t>
+          </template>
+          <span v-else>{{ $t('scratch.minimal') }}</span>
         </div>
         <div class="modal-footer">
           <button
@@ -39,7 +47,7 @@
             data-bs-dismiss="modal"
             type="button"
           >
-            <span class="btn-text">Sluiten</span>
+            <span class="btn-text">{{ $t('cta.close') }}</span>
           </button>
           <button
             v-if="!box?.opened"
@@ -48,7 +56,7 @@
             data-bs-dismiss="modal"
             type="button"
           >
-            <span class="btn-text">Annuleer</span>
+            <span class="btn-text">{{ $t('cta.cancel') }}</span>
           </button>
         </div>
       </div>
@@ -59,7 +67,6 @@
 <script lang="ts" setup>
 import type { Box } from '@/types/Calendar.ts'
 import { useCalendarStore } from '@/stores/calendar.ts'
-import { popConfetti } from '@/helpers/confetti.ts'
 import ScratchCard from '@/components/ScratchCard.vue'
 import { ref, watch } from 'vue'
 
@@ -71,10 +78,14 @@ const props = defineProps<{
 
 const started = ref<boolean>(false)
 
+/**
+ * Opens a box if it is available in the properties. This function interacts with the `calendarStore` to perform the action.
+ *
+ * @return {void} Does not return a value. Executes the opening of the specified box.
+ */
 function openBox() {
   if (!props.box) return
   calendarStore.openBox(props.box.id)
-  if (props.box.prize) popConfetti()
 }
 
 watch(

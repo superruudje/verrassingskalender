@@ -1,0 +1,85 @@
+{
+  "menu": {
+    "home": "Home",
+    "about": "Over"
+  },
+  "gameSettings": {
+    "title": "Spel instellingen",
+    "width": "Breedte",
+    "height": "Hoogte",
+    "100prizes": "Aantal {amount} prijzen",
+    "25000prizes": "Aantal {amount} prijzen",
+    "minigame": "Kras minigame",
+    "errors": {
+      "maxPrizes": "Totaal aantal prijzen ({totalPrizes}) kan niet hoger zijn dan totaal aantal vakjes ({totalBoxes}).",
+      "minPrizes": "Aantal prijzen mag niet negatief zijn.",
+      "gridSize": "Breedte en hoogte moeten groter zijn dan 0."
+    }
+  },
+  "game": {
+    "title": "Welkom bij de verrassingskalender!",
+    "intro": "Voor je zie je een kalender met {total} ({width} × {height}). In deze kalender zijn de volgende prijzen verstopt: {prize25000Count} × {amount25000} and {prize100Count} × {amount100}. Je mag één vakje openkrassen om te zien of er een prijs achter zit. Ook zie je welke vakjes al door andere spelers geopend zijn.",
+    "totalBoxes": "0 vakjes | {n} vakje | {n} vakjes",
+    "encouragement": "Veel succes!",
+    "endGame": {
+      "title": "Einde van het spel",
+      "text": "Alle vakjes zijn geopend."
+    }
+  },
+  "scratch": {
+    "title": "Kras het vakje open",
+    "text": "Kras het vakje open om te zien of er een prijs achter zit. Wanneer je start met krassen kun je niet meer annuleren.",
+    "minimal": "Kras minimaal 75% van de kraskaart.",
+    "prize": "{p} Je wint {prize}.",
+    "noPrize": "{0} Volgende keer beter.",
+    "no": "Helaas!",
+    "congrats": "Gefeliciteerd!"
+  },
+  "cta": {
+    "startNew": "Start een nieuw spel",
+    "changeSettings": "Wijzig instellingen",
+    "cancel": "Annuleren",
+    "close": "Sluiten"
+  },
+  "about": {
+    "case": {
+      "title": "Case beschrijving",
+      "p1": "NLO organiseert een nieuw kansspel. Op een website zien gebruikers een grote verrassingskalender met 10000 vakjes (100x100 grid). In 1 vakje zit een hoofdprijs van 25000 euro, in 100 vakjes zit een troostprijs van 100 euro. Een bezoeker van de website mag 1 vakje wegkrassen om zo kans te maken op een prijs. Ze zien welke vakjes al door andere gebruikers zijn opengemaakt en welke niet.",
+      "p2": "In de programmeertaal- en framework naar jouw keuze:",
+      "li1": "Maak een webpagina waarop de verrassingskalender te zien is. Dit mag een simpele ongestylde grid zijn van 100 x 100.",
+      "li2": "Een gebruiker kan een vakje openkrassen, waardoor de prijs eronder langzaam zichtbaar wordt.",
+      "li3": "Bij herladen van de pagina moet zichtbaar blijven welke vakjes al open gekrast zijn en welke prijs daaronder zat.",
+      "li4": "Je hoeft geen authenticatie te bouwen, je mag het concept dat meerdere gebruikers krassen in de kalender dus simuleren.",
+      "p3": "Het doel van deze opdracht is dat jij laat zien waar je technisch enthousiast van wordt. Richt je op wat jij belangrijk vindt in front-end werk: performance, UX, codekwaliteit, testbaarheid, design systems, tooling – alles is goed, zolang het jouw kwaliteiten laat zien."
+    },
+    "stack": {
+      "title": "Tech stack",
+      "p1": "Dit project is gebouwd met een moderne {stack} gericht op performance, onderhoudbaarheid en een prettige ontwikkelervaring.",
+      "tech": {
+        "title": "Kerntechnologieën",
+        "vue": "{vue} vormt de kern van de applicatie en zorgt voor een modulaire en schaalbare structuur.",
+        "pinia": "{pinia} wordt gebruikt voor centraal en voorspelbaar state management.",
+        "router": "{router} verzorgt de navigatie binnen de applicatie.",
+        "bootstrap": "{bootstrap} en {icons} leveren een consistente en responsieve UI.",
+        "sass": "{sass} zorgt voor flexibele en onderhoudbare stylesheets.",
+        "i18n": "{i18n} maakt meertalige ondersteuning en eenvoudige lokalisatie mogelijk."
+      },
+      "env": {
+        "title": "Ontwikkelomgeving",
+        "vite": "{vite} voor snelle builds en hot module reloading tijdens development.",
+        "typescript": "{ts} biedt typeveiligheid en betrouwbaarheid in de codebase.",
+        "eslint": "{eslint} en {prettier} waarborgen codekwaliteit en consistente formatting.",
+        "vueTsc": "{vueTsc} voor typechecks in Vue-componenten.",
+        "viteDevtools": "{viteDevtools} ondersteunt debugging en inspectie."
+      }
+    },
+    "cta": {
+      "title": "Meer weten?",
+      "github": "Bekijk de code op Github"
+    }
+  },
+  "footer": {
+    "warning": "Wat kost gokken jou? Stop op tijd, {0}",
+    "age": "18+"
+  }
+}
