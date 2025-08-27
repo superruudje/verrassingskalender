@@ -56,7 +56,7 @@ export const useCalendarStore = defineStore('calendar', {
       // Shuffle the grid to randomize the prizes
       for (let i = prizes.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-        ;[prizes[i], prizes[j]] = [prizes[j], prizes[i]]
+        ;[prizes[i]!, prizes[j]!] = [prizes[j]!, prizes[i]!]
       }
 
       this.boxes = prizes.map((prize, i) => ({
