@@ -100,7 +100,7 @@
   ></button>
 
   <teleport to="body">
-    <ScratchModal :box="selectedBox" />
+    <ScratchModal :box="calendarStore.selectedBox" />
     <EndGameModal />
   </teleport>
 </template>
@@ -117,7 +117,6 @@ const calendarStore = useCalendarStore()
 const { width, height, prize100Count, prize25000Count, minigame } = storeToRefs(calendarStore)
 
 const zoom = ref<number>(1)
-const selectedBox = ref<Box | null>(null)
 const scratchModalButton = ref<HTMLButtonElement | null>(null)
 const modalButton = ref<HTMLButtonElement | null>(null)
 
@@ -139,7 +138,7 @@ function reveal(box: Box) {
   if (box.opened) return
 
   if (minigame.value) {
-    selectedBox.value = box
+    calendarStore.selectedBox = box
     scratchModalButton.value?.click()
   } else {
     calendarStore.openBox(box.id)

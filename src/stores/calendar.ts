@@ -13,6 +13,7 @@ export const useCalendarStore = defineStore('calendar', {
     minigame: true,
     gameStarted: false,
     boxes: [] as Box[],
+    selectedBox: null as Box | null,
   }),
   getters: {
     /**
@@ -64,6 +65,7 @@ export const useCalendarStore = defineStore('calendar', {
         prize,
         opened: false,
       }))
+      this.selectedBox = null
 
       this.saveToLocalStorage()
     },
