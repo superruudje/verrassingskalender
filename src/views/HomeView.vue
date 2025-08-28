@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid py-5">
+  <div class="container-fluid py-3 py-md-5">
     <div class="row justify-content-center">
       <div class="col-md-10">
         <CalendarControls v-if="!gameStarted" />

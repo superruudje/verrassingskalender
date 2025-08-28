@@ -12,6 +12,7 @@
             inputmode="numeric"
             min="1"
             type="number"
+            required
           />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -23,6 +24,7 @@
             inputmode="numeric"
             min="1"
             type="number"
+            required
           />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -36,6 +38,7 @@
             inputmode="numeric"
             min="1"
             type="number"
+            required
           />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -49,6 +52,7 @@
             inputmode="numeric"
             min="1"
             type="number"
+            required
           />
         </div>
         <div class="col-md-6 col-lg-3">

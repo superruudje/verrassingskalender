@@ -5,6 +5,7 @@ import nl from './nl.json'
 const savedLocale = localStorage.getItem('lang') || 'nl'
 
 export const i18n = createI18n({
+  legacy: false,
   locale: savedLocale,
   fallbackLocale: 'en',
   warnHtmlMessage: false,

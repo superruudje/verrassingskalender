@@ -1,5 +1,5 @@
 <template>
-  <div class="card rounded-0 border-0 shadow mb-4">
+  <div class="card rounded-0 border-0 shadow">
     <div class="card-body p-4">
       <section class="nl-primary mb-4">
         <h3 class="fw-bold">{{ $t('game.title') }}</h3>
