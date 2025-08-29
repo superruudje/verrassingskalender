@@ -10,6 +10,8 @@
     "100prizes": "Amount of {amount} prizes",
     "25000prizes": "Amount of {amount} prizes",
     "minigame": "Scratch minigame",
+    "chance": "Current chance of winning:",
+
     "errors": {
       "maxPrizes": "Total amount of prizes ({totalPrizes}) cannot be greater than total amount of boxes ({totalBoxes}).",
       "minPrizes": "Amount of prizes cannot be negative.",
@@ -79,6 +81,7 @@
     }
   },
   "footer": {
+    "disclaimer": "<i class=\"bi bi-exclamation-circle-fill me-2\"></i>This project is a <strong>technical case study</strong> created for a job application at <strong>Nederlandse Loterij</strong>. It is <u>not an official product</u> of Nederlandse Loterij. All logos and brand names used are the property of Nederlandse Loterij.",
     "warning": "What is gambling really costing you? Be aware, {0}",
     "age": "18+"
   }

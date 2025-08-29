@@ -1,7 +1,11 @@
 <template>
-  <div class="card rounded-0 border-0 shadow mb-4">
+  <div
+    aria-labelledby="game-settings-heading"
+    class="card rounded-0 border-0 shadow mb-4"
+    role="region"
+  >
     <div class="card-body p-4">
-      <h3 class="nl-primary fw-bold">{{ $t('gameSettings.title') }}</h3>
+      <h3 id="game-settings-heading" class="nl-primary fw-bold">{{ $t('gameSettings.title') }}</h3>
       <form class="row g-3" @submit.prevent="startGame">
         <div class="col-md-6 col-lg-3">
           <label class="form-label" for="gridWidth">{{ $t('gameSettings.width') }}</label>
@@ -11,8 +15,8 @@
             class="form-control"
             inputmode="numeric"
             min="1"
-            type="number"
             required
+            type="number"
           />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -23,8 +27,8 @@
             class="form-control"
             inputmode="numeric"
             min="1"
-            type="number"
             required
+            type="number"
           />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -36,9 +40,9 @@
             v-model.number="form.prize100Count"
             class="form-control"
             inputmode="numeric"
-            min="1"
-            type="number"
+            min="0"
             required
+            type="number"
           />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -50,9 +54,9 @@
             v-model.number="form.prize25000Count"
             class="form-control"
             inputmode="numeric"
-            min="1"
-            type="number"
+            min="0"
             required
+            type="number"
           />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -60,15 +64,18 @@
             <input
               id="checkNativeSwitch"
               v-model="form.minigame"
+              :aria-checked="form.minigame"
               class="form-check-input"
-              switch
+              role="switch"
               type="checkbox"
-              value=""
             />
             <label class="form-check-label" for="checkNativeSwitch">{{
               $t('gameSettings.minigame')
             }}</label>
           </div>
+        </div>
+        <div class="col-12">
+          <span>{{ $t('gameSettings.chance') }} {{ chanceToWin }}</span>
         </div>
 
         <div v-if="errorMessage" class="col-12">
@@ -91,6 +98,7 @@ import { computed, reactive, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const calendarStore = useCalendarStore()
+const { n, t } = useI18n()
 
 const form = reactive({
   width: calendarStore.width,
@@ -100,18 +108,17 @@ const form = reactive({
   minigame: calendarStore.minigame,
 })
 
-const { n, t } = useI18n()
+const totalBoxes = computed(() => form.width * form.height)
 
 const errorMessage = computed(() => {
-  const totalBoxes = form.width * form.height
   const totalPrizes = form.prize100Count + form.prize25000Count
 
   if (form.width < 1 || form.height < 1) {
     return t('gameSettings.errors.gridSize')
   }
 
-  if (totalPrizes > totalBoxes) {
-    return t('gameSettings.errors.maxPrizes', { totalPrizes, totalBoxes })
+  if (totalPrizes > totalBoxes.value) {
+    return t('gameSettings.errors.maxPrizes', { totalPrizes, totalBoxes: totalBoxes.value })
   }
 
   if (form.prize100Count < 0 || form.prize25000Count < 0) {
@@ -119,6 +126,12 @@ const errorMessage = computed(() => {
   }
 
   return ''
+})
+
+const chanceToWin = computed(() => {
+  const totalBoxes = form.width * form.height
+  const totalPrizes = form.prize25000Count + form.prize100Count
+  return ((totalPrizes / totalBoxes) * 100).toFixed(2) + '%'
 })
 
 /**

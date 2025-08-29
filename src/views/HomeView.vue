@@ -1,9 +1,14 @@
 <template>
-  <div class="container-fluid py-3 py-md-5">
+  <div class="container py-3 py-md-5" role="region" aria-labelledby="calendar-heading">
+    <h2 id="calendar-heading" class="visually-hidden">Calendar Section</h2>
     <div class="row justify-content-center">
-      <div class="col-md-10">
-        <CalendarControls v-if="!gameStarted" />
-        <CalendarGrid v-else />
+      <div class="col">
+        <div v-if="!gameStarted">
+          <CalendarControls />
+        </div>
+        <div v-else>
+          <CalendarGrid />
+        </div>
       </div>
     </div>
   </div>

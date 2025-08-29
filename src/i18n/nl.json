@@ -10,6 +10,7 @@
     "100prizes": "Aantal {amount} prijzen",
     "25000prizes": "Aantal {amount} prijzen",
     "minigame": "Kras minigame",
+    "chance": "Huidige winkans:",
     "errors": {
       "maxPrizes": "Totaal aantal prijzen ({totalPrizes}) kan niet hoger zijn dan totaal aantal vakjes ({totalBoxes}).",
       "minPrizes": "Aantal prijzen mag niet negatief zijn.",
@@ -79,6 +80,7 @@
     }
   },
   "footer": {
+    "disclaimer": "<i class=\"bi bi-exclamation-circle-fill me-2\"></i>Dit project is een <strong>technische casus</strong> ontwikkeld ten behoeve van een sollicitatie bij <strong>Nederlandse Loterij</strong>. Het is <u>geen officieel product</u> van Nederlandse Loterij. Alle gebruikte logo’s en merknamen zijn eigendom van Nederlandse Loterij.",
     "warning": "Wat kost gokken jou? Stop op tijd, {0}",
     "age": "18+"
   }

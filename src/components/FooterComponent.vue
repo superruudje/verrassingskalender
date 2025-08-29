@@ -1,8 +1,8 @@
 <template>
   <footer class="bg-white nl-primary">
-    <div class="container py-5">
-      <div class="row align-items-center justify-content-between gy-3">
-        <div class="col-8 col-md-4 offset-2 offset-md-0">
+    <div class="container pt-5">
+      <div class="row align-items-center justify-content-between gy-3 mb-4">
+        <div class="col-8 col-md-5 offset-2 offset-md-0">
           <a href="https://www.nederlandseloterij.nl/" target="_blank">
             <img
               src="@/assets/logo-spel-van-nederlandse-loterij.svg"
@@ -11,10 +11,15 @@
             />
           </a>
         </div>
-        <div class="col-12 col-md-6 text-center text-md-end">
+        <div class="col-12 col-md-7 text-center text-md-end">
           <i18n-t tag="span" keypath="footer.warning" for="footer.age">
             <strong>{{ $t('footer.age') }}</strong>
           </i18n-t>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p v-html="$t('footer.disclaimer')"></p>
         </div>
       </div>
     </div>

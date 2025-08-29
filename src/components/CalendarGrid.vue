@@ -1,8 +1,8 @@
 <template>
-  <div class="card rounded-0 border-0 shadow">
+  <div aria-labelledby="game-heading" class="card rounded-0 border-0 shadow" role="region">
     <div class="card-body p-4">
       <section class="nl-primary mb-4">
-        <h3 class="fw-bold">{{ $t('game.title') }}</h3>
+        <h3 id="game-heading" class="fw-bold">{{ $t('game.title') }}</h3>
         <i18n-t keypath="game.intro" tag="p">
           <template #total>
             <b>{{ $t('game.totalBoxes', totalBoxes) }}</b>
@@ -10,13 +10,13 @@
           <template #width>{{ width }}</template>
           <template #height>{{ height }}</template>
           <template #prize25000Count>{{ prize25000Count }}</template>
-          <template #amount25000
-            ><b>{{ $n(25000, 'currency') }}</b></template
-          >
+          <template #amount25000>
+            <b>{{ $n(25000, 'currency') }}</b>
+          </template>
           <template #prize100Count>{{ prize100Count }}</template>
-          <template #amount100
-            ><b>{{ $n(100, 'currency') }}</b></template
-          >
+          <template #amount100>
+            <b>{{ $n(100, 'currency') }}</b>
+          </template>
         </i18n-t>
 
         <p>
@@ -25,7 +25,7 @@
 
         <div class="d-flex flex-wrap gap-2">
           <button
-            :title="$t('cta.changeSettings')"
+            :aria-label="$t('cta.changeSettings')"
             class="btn-primary"
             type="button"
             @click="calendarStore.resetGame()"
@@ -33,7 +33,7 @@
             <span class="btn-text">{{ $t('cta.changeSettings') }}</span>
           </button>
           <button
-            :title="$t('cta.startNew')"
+            :aria-label="$t('cta.startNew')"
             class="btn-cta"
             type="button"
             @click="calendarStore.initializeGrid"
@@ -42,7 +42,11 @@
           </button>
         </div>
       </section>
-      <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+      <div
+        aria-label="Prize legend and zoom controls"
+        class="d-flex flex-wrap align-items-center gap-2 mb-3"
+        role="region"
+      >
         <div class="d-flex align-items-center gap-1">
           <span class="prize-0" style="height: 12px; width: 12px"></span>
           <span>= €0,00</span>
@@ -56,13 +60,18 @@
           <span>= €25000,00</span>
         </div>
 
-        <div class="ms-auto zoom-controls">
-          <button class="btn btn-sm btn-secondary" type="button" @click="zoomOut">-</button>
+        <div aria-label="Zoom controls" class="ms-auto zoom-controls" role="group">
+          <button aria-label="Zoom out" class="zoom-btn" type="button" @click="zoomOut">-</button>
           <span class="mx-2">{{ Math.round(zoom * 100) }}%</span>
-          <button class="btn btn-sm btn-secondary" type="button" @click="zoomIn">+</button>
+          <button aria-label="Zoom in" class="zoom-btn" type="button" @click="zoomIn">+</button>
         </div>
       </div>
-      <div class="grid-container">
+      <div
+        :aria-colcount="calendarStore.width"
+        :aria-rowcount="calendarStore.height"
+        class="grid-container"
+        role="grid"
+      >
         <div
           :style="{
             gridTemplateColumns: `repeat(${calendarStore.width}, minmax(0, 80px))`,
@@ -72,13 +81,18 @@
           }"
           class="grid"
         >
-          <div
-            v-for="box in calendarStore.boxes"
+          <button
+            v-for="(box, index) in calendarStore.boxes"
             :key="box.id"
+            :aria-colindex="(index % calendarStore.width) + 1"
+            :aria-label="`Row ${Math.floor(index / calendarStore.width) + 1}, Column ${(index % calendarStore.width) + 1}`"
+            :aria-rowindex="Math.floor(index / calendarStore.width) + 1"
             :class="boxClass(box)"
             class="box"
+            role="gridcell"
+            type="button"
             @click="reveal(box)"
-          ></div>
+          ></button>
         </div>
       </div>
     </div>
@@ -86,6 +100,7 @@
 
   <button
     ref="modalButton"
+    aria-hidden="true"
     class="d-none"
     data-bs-target="#endGameModal"
     data-bs-toggle="modal"
@@ -93,6 +108,7 @@
   ></button>
   <button
     ref="scratchModalButton"
+    aria-hidden="true"
     class="d-none"
     data-bs-target="#scratchModal"
     data-bs-toggle="modal"
@@ -188,17 +204,30 @@ watch(allOpened, (val) => {
   }
 }
 
+.grid-row {
+  display: contents;
+}
+
 .box {
+  all: unset;
+  box-sizing: border-box;
+
   width: 100%;
   aspect-ratio: 1 / 1;
   border: 1px solid #ddd;
   background: #f5f5f5;
-  transition: background 0.2s ease;
   max-width: 80px;
   max-height: 80px;
+  transition: background 0.2s ease;
 
   &:hover {
-    background: #b3d4fc;
+    background: #b3d4fc !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+    z-index: 1;
   }
 
   &.hidden {
@@ -228,7 +257,7 @@ watch(allOpened, (val) => {
   border-radius: 20px;
   width: fit-content;
 
-  button {
+  .zoom-btn {
     align-items: center;
     background: #fff;
     border: none;
@@ -244,6 +273,10 @@ watch(allOpened, (val) => {
     line-height: 1;
     transition: transform 0.2s;
     width: 32px;
+    &:hover {
+      background: #fff;
+      transform: scale(1.13);
+    }
   }
 }
 </style>

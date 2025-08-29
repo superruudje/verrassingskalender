@@ -1,6 +1,6 @@
 <template>
-  <div class="container py-5">
-    <div class="row justify-content-center">
+  <div class="container py-3 py-md-5">
+    <div class="row">
       <div class="col-md-8">
         <section class="card nl-primary rounded-0 border-0 shadow mb-4">
           <div class="card-body p-4">

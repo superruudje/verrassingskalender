@@ -37,7 +37,8 @@ function changeLanguage(language: string) {
 </script>
 
 <style lang="scss" scoped>
-.dropdown-item.active, .dropdown-item:active {
+.dropdown-item.active,
+.dropdown-item:active {
   background-color: #002d6e !important;
 }
 </style>
